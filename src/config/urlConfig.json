@@ -1,0 +1,8 @@
+{
+  "login": "auth/login",
+  "signup": "auth/register",
+  "verify_email": "auth/verify/code",
+  "resend_code": "auth/resend/code",
+  "reset_pass": "auth/reset-password",
+  "change_pass": "auth/change-password"
+}
