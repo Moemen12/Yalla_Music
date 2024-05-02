@@ -1,13 +1,10 @@
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ChangePassword } from "../../types/interfaces/interface";
 import { changePasswordSchema } from "../../utilities/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SubmitBtn from "../../components/buttons/SubmitBtn";
-import {
-  useChangePasswordMutation,
-  useResetPasswordMutation,
-} from "../../services/auth.service";
+import { useChangePasswordMutation } from "../../services/auth.service";
 import toast from "react-hot-toast";
 import { ResetPassword } from "../../types/responses/response";
 import { useState } from "react";

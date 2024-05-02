@@ -40,8 +40,6 @@ const LoginModule: React.FC = () => {
       });
   };
 
-  const onSuccess = (response: any) => console.log(response);
-  const onFailure = (response: any) => console.error(response);
   return (
     <form className="w-full p-8 lg:w-1/2" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl font-semibold text-center text-rose-400">

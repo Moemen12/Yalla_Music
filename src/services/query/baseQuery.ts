@@ -1,9 +1,5 @@
-import {
-  BaseQueryApi,
-  BaseQueryFn,
-  fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
-import { RootState } from "../../app/store";
+import { BaseQueryApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// import { RootState } from "../../app/store";
 
 //   import { toast } from "react-toastify";
 
@@ -20,7 +16,7 @@ export const baseQuery = async (
 ): Promise<any> => {
   const token = localStorage.getItem("token");
 
-  const state = api.getState() as RootState;
+  // const state = api.getState() as RootState;
   // const tokenExpiration = state?.auth?.user?.exp;
   // if (token && tokenExpiration) {
   //   const expirationDate = new Date(tokenExpiration * 1000);

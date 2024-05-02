@@ -1,7 +1,7 @@
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { EmailCode, LoginInputs } from "../../types/interfaces/interface";
-import { LoginSchema, resetSchema } from "../../utilities/validationSchema";
+import { Link } from "react-router-dom";
+import { EmailCode } from "../../types/interfaces/interface";
+import { resetSchema } from "../../utilities/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SubmitBtn from "../../components/buttons/SubmitBtn";
 import { useResetPasswordMutation } from "../../services/auth.service";

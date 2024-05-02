@@ -1,7 +1,5 @@
 import { Outlet } from "react-router";
-import NavigateBtn from "../components/buttons/NavigateBtn";
-import { Link } from "react-router-dom";
-import urlConfig from "../config/urlConfig.json";
+
 const Authlayout: React.FC = () => {
   return (
     // <div classNameName="h-dvh bg-slate-600 flex items-center justify-center">

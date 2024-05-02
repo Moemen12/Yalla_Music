@@ -106,9 +106,9 @@ const EmailVerificationModule: React.FC = () => {
 
           <p className="text-center mt-4">
             Didn't receive an email?{" "}
-            <a href="" className="font-semibold" onClick={resendCode}>
+            <button className="font-semibold" onClick={resendCode}>
               Resend
-            </a>
+            </button>
           </p>
         </div>
       </div>

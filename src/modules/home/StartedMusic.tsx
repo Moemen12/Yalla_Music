@@ -9,7 +9,7 @@ const StartedMusic: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [playbackRate, setPlaybackRate] = useState(1);
+  // const [playbackRate, setPlaybackRate] = useState(1);
   const [volume, setVolume] = useState(1);
   const [previousVolume, setPreviousVolume] = useState(1);
 
@@ -44,12 +44,12 @@ const StartedMusic: React.FC = () => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const handlePlaybackSpeedChange = (speed: number) => {
-    if (audioRef.current) {
-      audioRef.current.playbackRate = speed;
-      //   setPlaybackRate(speed);
-    }
-  };
+  // const handlePlaybackSpeedChange = (speed: number) => {
+  //   if (audioRef.current) {
+  //     audioRef.current.playbackRate = speed;
+  //     //   setPlaybackRate(speed);
+  //   }
+  // };
 
   const handleVolumeChange = (value: number) => {
     if (audioRef.current && !isMuted) {
