@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconType } from "react-icons";
 
 interface SwapProps {
@@ -28,7 +28,10 @@ const Swap: React.FC<SwapProps> = ({
 }) => {
   const [isChecked, setIsChecked] = useState(defaultChecked);
 
-  // Function to generate a random string
+  useEffect(() => {
+    setIsChecked(defaultChecked);
+  }, [defaultChecked]);
+
   const generateRandomId = () => {
     return Math.random().toString(36).substr(2, 9);
   };
@@ -58,7 +61,7 @@ const Swap: React.FC<SwapProps> = ({
         {isChecked ? (
           <IconOn size={onIconSize} color={onIconColor} />
         ) : (
-          <IconOff size={onIconSize} color={onIconColor} />
+          <IconOff size={offIconSize} color={offIconColor} />
         )}
       </span>
     </label>

@@ -16,6 +16,7 @@ const PositiveCard: React.FC<PositiveCardProps> = ({
 }) => {
   return (
     <div
+      data-aos="fade-up"
       className={`min-h-[230px] text-center max-w-[290px] flex flex-col items-center justify-around p-4 ${className}`}
     >
       <div className="relative rounded-md">
@@ -23,10 +24,8 @@ const PositiveCard: React.FC<PositiveCardProps> = ({
           <Icon />
         </span>
       </div>
-      <h4 className="text-base pt-4" style={{ color: "#29293a" }}>
-        {title}
-      </h4>
-      <p className="text-music-title text-xs leading-5 pt-4">{desc}</p>
+      <h4 className="text-base pt-4 text-white">{title}</h4>
+      <p className="text-white text-xs leading-5 pt-4">{desc}</p>
     </div>
   );
 };

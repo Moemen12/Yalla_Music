@@ -28,8 +28,8 @@ const Navbar: React.FC = () => {
       <nav
         className={`flex px-6 sm:px-14 fixed-navbar items-center lg:m-auto lg:max-w-[90rem] justify-between pt-4 mx-auto ${
           isScrolled
-            ? "fixed w-full pb-4 bg-black z-[1000]"
-            : "fixed w-full pb-4 bg-black sm:bg-transparent z-[1000]"
+            ? "fixed w-full pb-4 bg-main-back z-[1000]"
+            : "fixed w-full pb-4 bg-main-back sm:bg-transparent z-[1000]"
         }`}
       >
         <Swap
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
           onToggleOn={() => setIsSideBarOpen(true)}
           onToggleOff={() => setIsSideBarOpen(false)}
         />
-        <h1 className="text-logo-color font-bold text-2xl sm:text-3xl font-mono">
+        <h1 className="text-special font-bold text-2xl sm:text-3xl font-mono">
           <span className="text-white">Yalla</span>Music
         </h1>
         <ul className="sm:flex hidden items-center text-white gap-12 text-lg">

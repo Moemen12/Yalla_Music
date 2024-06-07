@@ -4,5 +4,17 @@
   "verify_email": "auth/verify/code",
   "resend_code": "auth/resend/code",
   "reset_pass": "auth/reset-password",
-  "change_pass": "auth/change-password"
+  "change_pass": "auth/change-password",
+  "enable-2fa": "auth/two-fa/enable",
+  "disable-2fa": "auth/two-fa/disable",
+  "verify-2fa": "auth/two-fa/verify",
+  "user_info": "user/me",
+  "update_user_profile": "user/upload-profile-picture",
+  "update_user_info": "user/update-user-info",
+  "get_notifications": "notification/get-notifications",
+  "mark_as_read": "notification/mark-as-read",
+  "enable-creator-mode": "creator-mode/enable",
+  "disable-creator-mode": "creator-mode/disable",
+  "get-mode-info": "creator-mode/get-mode-info",
+  "musics_genres": "creator-mode/get-music-genres"
 }

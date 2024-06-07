@@ -2,8 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext", "es6"],
-    // "types": ["react-redux", "@types/react-redux", "node"],
-    "types": ["node"],
+    "types": ["react-redux", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

@@ -9,7 +9,7 @@ const ListenSection: React.FC = () => {
   return (
     <>
       <div className="w-[90%] mx-auto">
-        <h2 className="sm:text-3xl text-xl text-black mt-10 sm:mt-20 text-center">
+        <h2 className="sm:text-3xl text-xl text-white mt-10 sm:mt-20 text-center">
           Why You Should Listen to OnWave
         </h2>
 
@@ -40,7 +40,7 @@ const ListenSection: React.FC = () => {
           />
         </div>
       </div>
-      <div className="audio-displayer min-h-36 justify-center flex items-center gap-8 flex-col sm:flex-row p-8 mt-8">
+      <div className="bg-card-color min-h-36 justify-center flex items-center gap-8 flex-col sm:flex-row p-8 mt-8">
         <h3 className="text-white text-lg sm:text-2xl text-center">
           Listen to{" "}
           <Link className="text-yellow-300 font-bold" to="/">
@@ -49,9 +49,9 @@ const ListenSection: React.FC = () => {
           From Anywhere!
         </h3>
         <NavigateBtn
-          style={{ background: "white" }}
+          // style={{ background: "white" }}
           text="listen online"
-          className="block !mt-0 !px-8 !py-0 !text-logo-color !text-sm"
+          className="block !mt-0 !px-8 !py-0 !text-sm !bg-white border-white border-solid"
         />
       </div>
     </>

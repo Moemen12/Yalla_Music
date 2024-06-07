@@ -7,6 +7,12 @@ import { useState } from "react";
 import { useRegisterMutation } from "../../services/auth.service";
 import toast from "react-hot-toast";
 import SubmitBtn from "../../components/buttons/SubmitBtn";
+import {
+  GeneralErrorResponse,
+  GeneralResponse,
+} from "../../types/responses/response";
+import { useAppDispatch } from "../../app/hooks";
+import { storeUser } from "../../features/auth/authSlice";
 
 const SignupModule: React.FC = () => {
   const {
@@ -21,6 +27,7 @@ const SignupModule: React.FC = () => {
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [registerUser, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   // const [error, setError] = useState(null);
 
   const onSubmit: SubmitHandler<SignupInputs> = (data) => {
@@ -31,14 +38,14 @@ const SignupModule: React.FC = () => {
 
     registerUser(data)
       .unwrap()
-      .then((res) => {
-        localStorage.setItem("token", res.access_token);
-        toast.success("User registered successfully");
+      .then((res: GeneralResponse) => {
+        dispatch(storeUser(data.email));
+        toast.success(res.message);
         navigate("/auth/email/verification");
       })
-      .catch((err) => {
-        // setError(err?.data);
-        toast.error(err?.data);
+      .catch((err: GeneralErrorResponse) => {
+        dispatch(storeUser(data.email));
+        toast.error(err.data.message);
       });
   };
 
@@ -47,16 +54,16 @@ const SignupModule: React.FC = () => {
       className="w-full p-8 pt-4 lg:w-1/2"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1 className="text-2xl font-semibold text-center text-rose-400">
+      <h1 className="text-2xl font-semibold text-center text-special">
         <span className="text-black">Yalla</span>Music
       </h1>
 
       <div className="mt-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-white text-sm font-bold mb-2">
           Username
         </label>
         <input
-          className={`bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
+          className={`bg-gray-200 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none text-music-title ${
             errors.username && "border-red-500"
           }`}
           type="text"
@@ -66,11 +73,11 @@ const SignupModule: React.FC = () => {
       </div>
 
       <div className="mt-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-white text-sm font-bold mb-2">
           Email Address
         </label>
         <input
-          className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          className="bg-gray-200 text-music-title focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           type="email"
           {...register("email")}
         />
@@ -79,12 +86,12 @@ const SignupModule: React.FC = () => {
 
       <div className="mt-4">
         <div className="flex justify-between">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-white text-sm font-bold mb-2">
             Password
           </label>
         </div>
         <input
-          className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          className="bg-gray-200 text-music-title focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           type="password"
           {...register("password")}
         />
@@ -93,12 +100,12 @@ const SignupModule: React.FC = () => {
 
       <div className="mt-4">
         <div className="flex justify-between">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-white text-sm font-bold mb-2">
             Password Confirmation
           </label>
         </div>
         <input
-          className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          className="bg-gray-200 text-music-title focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           type="password"
           {...register("passwordConfirmation")}
         />
@@ -120,7 +127,7 @@ const SignupModule: React.FC = () => {
 
       <div className="mt-4 flex items-center justify-between">
         <span className="border-b w-1/5 md:w-1/4"></span>
-        <Link to={"/auth/login"} className="text-xs text-gray-500 uppercase">
+        <Link to={"/auth/login"} className="text-xs text-white uppercase">
           or Log in
         </Link>
         <span className="border-b w-1/5 md:w-1/4"></span>

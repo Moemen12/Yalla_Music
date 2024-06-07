@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface MusicCardProps {
   title: string;
@@ -15,13 +17,14 @@ const MusicCard: React.FC<MusicCardProps> = ({
 }) => {
   return (
     <div
-      className={`min-h-[230px] text-center max-w-[290px] bg-slate-100 flex flex-col items-center justify-around p-4 transform transition-transform hover:scale-105 ${className}`}
+      className={`min-h-[230px] text-center rounded-md text-white max-w-[290px] bg-card-color flex flex-col items-center justify-around p-4 transform transition-transform hover:scale-105 ${className}`}
+      data-aos="fade-up"
     >
       <div className="relative overflow-hidden rounded-md">
         <img loading="lazy" src={image} alt={title} className="w-full h-auto" />
       </div>
-      <h4 className="text-black text-xl">{title}</h4>
-      <p className="text-sm text-music-title">{desc}</p>
+      <h4 className="text-xl">{title}</h4>
+      <p className="text-sm">{desc}</p>
     </div>
   );
 };

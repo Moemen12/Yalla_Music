@@ -7,37 +7,57 @@ import {
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import SubmitBtn from "../../components/buttons/SubmitBtn";
+import {
+  GeneralErrorResponse,
+  GeneralResponse,
+} from "../../types/responses/response";
+import { useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
 
 const EmailVerificationModule: React.FC = () => {
   const [verificationCode, setVerificationCode] = useState("");
 
   const navigate = useNavigate();
+  const email = useAppSelector((state: RootState) => state.auth.email);
+
   const [verifyEmail, { isLoading, isSuccess }] = useVerifyEmailMutation();
   const [resendEmailCode] = useResendCodeMutation();
+
   const sendCode = (event: React.FormEvent) => {
     event.preventDefault();
 
-    verifyEmail({ code: verificationCode })
+    verifyEmail({ code: verificationCode, email })
       .unwrap()
-      .then((res) => {
+      .then((res: GeneralResponse) => {
         navigate("/");
         toast.success(res.message);
+        return null;
       })
-      .catch((err) => {
-        toast.error(err.data);
+      .catch((err: GeneralErrorResponse) => {
+        if (email === null) {
+          toast.error("Login First");
+          navigate("/auth/login");
+          return null;
+        }
+        toast.error(err.data.message);
       });
   };
 
   const resendCode = (event: React.FormEvent) => {
     event.preventDefault();
 
-    resendEmailCode(null)
+    resendEmailCode(email)
       .unwrap()
-      .then((res) => {
+      .then((res: GeneralResponse) => {
         toast.success(res.message);
       })
-      .catch((err) => {
-        toast.error(err.data);
+      .catch((err: GeneralErrorResponse) => {
+        if (email === null) {
+          toast.error("Login First");
+          navigate("/auth/login");
+          return null;
+        }
+        toast.error(err.data.message);
       });
   };
 
@@ -74,7 +94,7 @@ const EmailVerificationModule: React.FC = () => {
       className="w-full p-8 lg:w-1/2 flex flex-col items-center gap-20"
       onSubmit={sendCode}
     >
-      <h1 className="text-3xl font-semibold text-center text-rose-400">
+      <h1 className="text-3xl font-semibold text-center text-special">
         <span className="text-black">Yalla</span>Music
       </h1>
 

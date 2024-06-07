@@ -6,8 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SubmitBtn from "../../components/buttons/SubmitBtn";
 import { useChangePasswordMutation } from "../../services/auth.service";
 import toast from "react-hot-toast";
-import { ResetPassword } from "../../types/responses/response";
+
 import { useState } from "react";
+import {
+  GeneralErrorResponse,
+  GeneralResponse,
+} from "../../types/responses/response";
 
 const ResetPasswordModule: React.FC = () => {
   const {
@@ -31,12 +35,12 @@ const ResetPasswordModule: React.FC = () => {
     const passwordData = { ...data, resetToken };
     changePassword(passwordData)
       .unwrap()
-      .then((res: ResetPassword) => {
+      .then((res: GeneralResponse) => {
         navigate("/auth/login");
         toast.success(res.message);
       })
-      .catch((err) => {
-        toast.error(err.data);
+      .catch((err: GeneralErrorResponse) => {
+        toast.error(err.data.message);
       });
   };
 
@@ -45,7 +49,7 @@ const ResetPasswordModule: React.FC = () => {
       className="w-full p-8 lg:w-1/2 flex flex-col gap-16"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1 className="text-2xl font-semibold text-center text-rose-400">
+      <h1 className="text-2xl font-semibold text-center text-special">
         <span className="text-black">Yalla</span>Music
       </h1>
 
@@ -60,12 +64,12 @@ const ResetPasswordModule: React.FC = () => {
         <div className="sm:w-5/6 sm:mx-auto">
           <div className="mt-4">
             <div className="flex justify-between">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-white text-sm font-bold mb-2">
                 New Password
               </label>
             </div>
             <input
-              className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+              className="bg-gray-200 text-music-title focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
               type="password"
               {...register("password")}
             />
@@ -74,12 +78,12 @@ const ResetPasswordModule: React.FC = () => {
 
           <div className="mt-4">
             <div className="flex justify-between">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-white text-sm font-bold mb-2">
                 Password Confirmation
               </label>
             </div>
             <input
-              className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+              className="bg-gray-200 text-music-title focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
               type="password"
               {...register("passwordConfirmation")}
             />

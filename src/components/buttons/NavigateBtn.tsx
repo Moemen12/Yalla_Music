@@ -1,10 +1,5 @@
 import React from "react";
-
-interface NavigateBtnProps {
-  text: string;
-  className?: string;
-  style?: React.CSSProperties;
-}
+import { NavigateBtnProps } from "../../types/interfaces/interface";
 
 const NavigateBtn: React.FC<NavigateBtnProps> = ({
   text,

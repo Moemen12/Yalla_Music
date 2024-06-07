@@ -6,7 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SubmitBtn from "../../components/buttons/SubmitBtn";
 import { useResetPasswordMutation } from "../../services/auth.service";
 import toast from "react-hot-toast";
-import { ResetPassword } from "../../types/responses/response";
+import {
+  GeneralErrorResponse,
+  GeneralResponse,
+} from "../../types/responses/response";
 
 const ForgetPasswordModule: React.FC = () => {
   const {
@@ -22,11 +25,11 @@ const ForgetPasswordModule: React.FC = () => {
   const onSubmit: SubmitHandler<EmailCode> = (email) => {
     resetPassword(email)
       .unwrap()
-      .then((res: ResetPassword) => {
+      .then((res: GeneralResponse) => {
         toast.success(res.message);
       })
-      .catch((err) => {
-        toast.error(err.data);
+      .catch((err: GeneralErrorResponse) => {
+        toast.error(err.data.message);
       });
   };
 
@@ -35,23 +38,23 @@ const ForgetPasswordModule: React.FC = () => {
       className="w-full p-8 lg:w-1/2 flex flex-col gap-16"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1 className="text-2xl font-semibold text-center text-rose-400">
+      <h1 className="text-2xl font-semibold text-center text-special">
         <span className="text-black">Yalla</span>Music
       </h1>
 
       {/* <div className="mt-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-white text-sm font-bold mb-2">
           Email Address
         </label>
         <input
-          className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          className="bg-gray-200 text-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           type="email"
           {...register("email")}
         />
         <p className="text-red-500">{errors?.email?.message}</p>
       </div> */}
 
-      <div className="flex flex-col gap-6 text-black">
+      <div className="flex flex-col gap-6 text-white">
         <b className="text-xl font-extrabold text-center block">
           Reset Password
         </b>
@@ -60,11 +63,11 @@ const ForgetPasswordModule: React.FC = () => {
         </p>
 
         <div className="mt-4 sm:w-5/6 sm:mx-auto">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-white text-sm font-bold mb-2">
             Email Address
           </label>
           <input
-            className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+            className="bg-gray-200 text-music-title focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
             type="email"
             {...register("email")}
           />

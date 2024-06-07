@@ -3,13 +3,19 @@
 @import "tailwindcss/utilities";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+:root {
+  --main-back: #212237;
+  --main-color: #b133e8;
+  --card: #363656;
+}
+
 body {
   cursor: url("/public/assets/images/cursor/noteCursor.png"), auto;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 
-  background-color: white;
+  background-color: var(--main-back);
 }
 
 header nav a.active {
@@ -25,7 +31,27 @@ footer svg {
 }
 
 .audio-displayer {
-  background-image: linear-gradient(to right, #f23637, #fc0b68);
+  background-image: linear-gradient(
+    to right,
+    #ed0487 0%,
+    #b133e8 53%,
+    #6531ef 100%
+  );
+}
+
+.border-special {
+  border-color: var(--main-color);
+}
+
+.main-height-mobile {
+  height: calc(100dvh - 168px);
+}
+
+.text-special {
+  background: linear-gradient(to right, #ed0487 0%, #b133e8 53%, #6531ef 100%);
+  -webkit-background-clip: text; /* For Safari */
+  background-clip: text;
+  color: transparent; /* Make text transparent */
 }
 
 input[type="range"] {
@@ -43,20 +69,21 @@ input[type="range"]::-webkit-slider-runnable-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000;
-  background: #d41159;
+  background: #ffffff;
   border-radius: 1px;
   border: 0px solid #000000;
 }
 input[type="range"]::-webkit-slider-thumb {
-  box-shadow: 0px 0px 0px #000000;
-  border: 1px solid #2497e3;
-  height: 7px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  height: 18px;
   width: 18px;
 
-  background: #000000;
+  background: linear-gradient(to right, #ed0487 0%, #b133e8 53%, #6531ef 100%);
   cursor: pointer;
+
   -webkit-appearance: none;
-  margin-top: -1px;
+  margin-top: -6px;
 }
 input[type="range"]:focus::-webkit-slider-runnable-track {
   background: yellow;
@@ -118,20 +145,34 @@ input[type="range"]:focus::-ms-fill-upper {
   background: #2497e3;
 }
 
+/* Start Notification Component */
+
+.notification::-webkit-scrollbar {
+  background-color: black;
+  width: 5px;
+}
+
+/* End Notification Component */
+
 ::-webkit-scrollbar {
   background-color: black;
   width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(to right, #f23637, #fc0b68);
+  background-image: linear-gradient(
+    to right,
+    #ed0487 0%,
+    #b133e8 53%,
+    #6531ef 100%
+  );
 }
 
 ::placeholder {
-  color: red !important;
+  color: #6531ef !important;
 }
 
 ::-ms-input-placeholder {
-  color: red !important;
+  color: #6531ef !important;
 }
 
 .verification-code input {
@@ -142,7 +183,14 @@ input[type="range"]:focus::-ms-fill-upper {
   color: #ffffff !important;
 }
 
+.hidden-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
 @media screen and (max-width: 410px) {
+  body {
+    cursor: default;
+  }
   .verification-code input {
     width: 40px !important;
     height: 40px !important;
@@ -156,3 +204,117 @@ input[type="range"]:focus::-ms-fill-upper {
     gap: 0.5rem;
   }
 }
+
+@media screen and (min-width: 640px) {
+  .main-height-mobile {
+    height: calc(100dvh - 192px);
+  }
+}
+
+.new-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 88px;
+  grid-template-areas:
+    "sidebar main main main"
+    "sidebar footer footer footer";
+}
+
+main {
+  grid-area: main;
+}
+#sidebar {
+  grid-area: sidebar;
+}
+
+footer {
+  grid-area: footer;
+}
+/* 
+@media only screen and (max-width: 750px) {
+  .new-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "main" "footer";
+  }
+} */
+
+@media only screen and (max-width: 750px) {
+  .new-container {
+    display: grid;
+    grid-template-columns: 0 1fr 1fr 1fr;
+    grid-template-areas:
+      "sidebar main main main"
+      "sidebar footer footer footer";
+  }
+}
+.rhap_main-controls button:nth-child(1) svg,
+.rhap_main-controls button:nth-child(2) svg,
+.rhap_main-controls button:nth-child(3) svg {
+  font-size: 2rem;
+}
+
+.play-audio div,
+.play-audio button,
+.play-audio svg {
+  color: #ffffff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.relative:hover .overlay {
+  opacity: 1;
+}
+
+/* ############################################################################### */
+
+/* Start React-Select */
+
+#react-select-2-placeholder {
+  color: black;
+}
+
+/* End React-Select */
+
+/* ############################################################################### */
+
+.ticket-btn:hover svg {
+  color: white;
+}
+.artist__Card:hover p {
+  color: var(--main-color);
+}
+.asidebar a.active > svg {
+  color: var(--main-color);
+}
+.instagram-back {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  );
+}
+
+/* Start Notification Component */
+aside div:first-child::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* End Notification Component */

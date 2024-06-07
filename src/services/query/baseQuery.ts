@@ -1,4 +1,6 @@
 import { BaseQueryApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import toast from "react-hot-toast";
+
 // import { RootState } from "../../app/store";
 
 //   import { toast } from "react-toastify";
@@ -28,7 +30,7 @@ export const baseQuery = async (
   // }
   if (!navigator.onLine) {
     // Check if the user is offline
-    // toast.error("You are offline. Please check your internet connection.");
+    toast.error("You are offline. Please check your internet connection.");
     throw new Error("Offline");
   }
 
@@ -37,21 +39,38 @@ export const baseQuery = async (
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   })(args, api, extraOptions);
 
-  if (response.error) {
-    const { status } = response.error;
-    // Optional chaining with nullish coalescing
-    const errorMessage =
-      (response.error.data as ErrorResponse)?.message ??
-      "An error occurred. Please try again later.";
-
-    if (status === 401) {
+  if (response && response.error) {
+    if (response.error?.status === 401) {
       localStorage.removeItem("token");
       window.location.replace("/auth/login");
-      return { error: { status, data: "Unauthorized" } };
+      return response.error;
+      // console.log(response.error);
     } else {
-      return { error: { status, data: errorMessage } };
+      return response;
     }
-  } else {
-    return response;
   }
+
+  return response;
 };
+// try {
+//   console.log(response);
+
+//   return response;
+// } catch (error: any) {
+//   return error.data;
+// }
+
+// if (response.error) {
+//   const { status } = response.error;
+//   const errorMessage =
+//     (response.error.data as ErrorResponse)?.message ??
+//     "An error occurred. Please try again later.";
+
+//   if (status === 401) {
+//     localStorage.removeItem("token");
+//     window.location.replace("/auth/login");
+//     return { error: { status, data: "Unauthorized" } };
+//   }
+// } else {
+//   return response;
+// }

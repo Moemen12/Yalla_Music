@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <Toaster />
+
     <App />
   </Provider>
 );
