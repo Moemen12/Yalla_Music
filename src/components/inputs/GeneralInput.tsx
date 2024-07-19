@@ -5,6 +5,7 @@ interface GeneralInputProps {
   type: string;
   name?: string;
   id?: string;
+  labelClass?: string | null;
   defaultValue?: string;
   placeholder?: string;
   className?: string;
@@ -17,6 +18,7 @@ interface GeneralInputProps {
 
 const GeneralInput: React.FC<GeneralInputProps> = ({
   className = "",
+  labelClass = "",
   type,
   name,
   placeholder,
@@ -40,7 +42,9 @@ const GeneralInput: React.FC<GeneralInputProps> = ({
 
   return (
     <>
-      <label className="input !bg-gray-200 focus:outline-0 input-bordered flex items-center gap-2">
+      <label
+        className={`input !bg-gray-200 focus:outline-0 input-bordered flex items-center gap-2 ${labelClass}`}
+      >
         {Icon ? <Icon /> : null}
         <input
           placeholder={placeholder}

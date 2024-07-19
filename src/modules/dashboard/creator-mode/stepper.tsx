@@ -161,17 +161,11 @@ const Stepper: React.FC = () => {
             </div>
             <div className="mb-4">
               <label className="block">Audio File:</label>
-              <input
-                type="file"
-                className="w-full p-2 border rounded text-black"
-              />
+              <input type="file" className="w-full p-2 border rounded" />
             </div>
             <div className="mb-4">
               <label className="block">Cover Art:</label>
-              <input
-                type="file"
-                className="w-full p-2 border rounded text-black"
-              />
+              <input type="file" className="w-full p-2 border rounded" />
             </div>
           </form>
         </div>
